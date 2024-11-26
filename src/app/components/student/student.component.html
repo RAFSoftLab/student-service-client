@@ -1,1 +1,48 @@
-<p>student works!</p>
+<div *ngIf="studentDto != undefined" class="container rounded bg-white mt-1 mb-1">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://cdn-icons-png.flaticon.com/512/12058/12058199.png"><span class="font-weight-bold">{{studentDto.student.ime}}</span><span class="text-black-50">{{studentDto.student.email}}</span><span> </span></div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profil studenta</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-4"><label class="labels">Ime</label><input [(ngModel)]="studentDto.student.ime" disabled="true" type="text" class="form-control" placeholder="ime" value=""></div>
+                    <div class="col-md-4"><label class="labels">Srednje ime</label><input [(ngModel)]="studentDto.student.srednjeIme" disabled="true" type="text" class="form-control" placeholder="srednje ime" value=""></div>
+                    <div class="col-md-4"><label class="labels">Prezime</label><input [(ngModel)]="studentDto.student.prezime" disabled="true" type="text" class="form-control" placeholder="prezime" value=""></div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">JMBG</label><input [(ngModel)]="studentDto.student.jmbg" disabled="true" type="text" class="form-control" placeholder="jmbg" value=""></div>
+                    <div class="col-md-6"><label class="labels">Pol</label><input [(ngModel)]="studentDto.student.pol" disabled="true" type="text" class="form-control" placeholder="pol" value=""></div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Datum rođenja</label><input [(ngModel)]="studentDto.student.datumRodjenja" disabled="true" type="date" class="form-control" placeholder="datum rođenja" value=""></div>
+                    <div class="col-md-6"><label class="labels">Mesto rođenja</label><input [(ngModel)]="studentDto.student.mestoRodjenja" disabled="true" type="text" class="form-control" placeholder="mesto rođenja" value=""></div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Adresa</label><input [(ngModel)]="studentDto.student.adresa" disabled="true" type="text" class="form-control" placeholder="adresa" value=""></div>
+                    <div class="col-md-6"><label class="labels">Mesto prebivališta</label><input [(ngModel)]="studentDto.student.mestoPrebivalista" disabled="true" type="text" class="form-control" placeholder="mesto prebivališta" value=""></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6"><label class="labels">Broj mobilnog telefona</label><input [(ngModel)]="studentDto.student.brojTelefonaMobilni" disabled="true" type="text" class="form-control" placeholder="broj mobilnog telefona" value=""></div>
+                    <div class="col-md-6"><label class="labels">Email</label><input [(ngModel)]="studentDto.student.email" disabled="true" type="text" class="form-control" placeholder="email" value=""></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-4"><label class="labels">Smer</label><input [(ngModel)]="studentDto.studProgramOznaka" disabled="true" type="text" class="form-control" placeholder="smer" value=""></div>
+                    <div class="col-md-4"><label class="labels">Broj upisa</label><input [(ngModel)]="studentDto.broj" disabled="true" type="number" class="form-control" value="" placeholder="broj upisa"></div>
+                    <div class="col-md-4"><label class="labels">Godina upisa</label><input [(ngModel)]="studentDto.godina" disabled="true" type="number" class="form-control" value="" placeholder="godina upisa"></div>
+                </div>
+                <!-- <div class="mt-5 text-center"><button class="btn btn-primary" type="button">Sačuvaj</button></div> -->
+            </div>
+        </div>
+        <div class="col-md-4">
+            <!-- <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
+                <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
+                <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
+            </div> -->
+        </div>
+    </div>
+</div>

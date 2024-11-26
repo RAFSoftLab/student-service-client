@@ -28,8 +28,8 @@
         </li>
       </ul>
       <form (submit)="pretraziPoIndeksu()" class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Indeks" aria-label="Search" name="indeks" [(ngModel)]="indeks">
-        <button class="btn btn-outline-success" type="submit">Pretraži</button>
+        <input class="form-control me-2" type="search" placeholder="Indeks" aria-label="Search" name="indeks" (mousedown)="backToAppComponent()" [(ngModel)]="indeks">
+        <button [disabled]="indeks == ''" class="btn btn-outline-success" type="submit">Pretraži</button>
       </form>
     </div>
   </div>
