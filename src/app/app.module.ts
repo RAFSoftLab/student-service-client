@@ -8,12 +8,14 @@ import { HomeComponent } from './components/home/home.component';
 
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { SudentPolozeniPredmetiComponent } from './components/sudent-polozeni-predmeti/sudent-polozeni-predmeti.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StudentComponent,
-    HomeComponent
+    HomeComponent,
+    SudentPolozeniPredmetiComponent
   ],
   imports: [
     BrowserModule,

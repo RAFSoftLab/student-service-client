@@ -1,0 +1,36 @@
+<div *ngIf="studentProfile != undefined" class="container">
+    <div class="row">
+        <div class="col-md-2"><div></div></div>
+        <div class="col-md-8">
+            <h4 class="text-right">Položeni predmeti</h4>
+            <h6 class="text-black-50">
+                {{studentProfile.indeks.student.ime}} {{studentProfile.indeks.student.prezime}}
+                {{studentProfile.indeks.studProgramOznaka}}{{studentProfile.indeks.broj}}/{{studentProfile.indeks.godina}}
+            </h6>
+            <br>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Naziv</th>
+                    <th scope="col">Profesor</th>
+                    <th scope="col">Ocena</th>
+                    <th scope="col">ESPB</th>
+                    <th scope="col">Semetar</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let polozenPredmet of studentProfile.polozeniPredmeti; let i = index">
+                    <th scope="row">{{ i+1 }}</th>
+                    <td>{{polozenPredmet.predmet.naziv}}</td>
+                    <td>{{polozenPredmet.nastavnik.ime}} {{polozenPredmet.nastavnik.prezime}}</td>
+                    <td>{{polozenPredmet.ocena}}</td>
+                    <td>{{polozenPredmet.predmet.espb}}</td>
+                    <td>{{polozenPredmet.predmet.semestar}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
