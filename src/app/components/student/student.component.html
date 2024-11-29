@@ -1,65 +1,22 @@
-<div *ngIf="studentDto != undefined" class="container">
-    <div class="row">
-        <div class="col-md-1 border-right"></div>
-
-        <div class="col-md-3 border-right">
-            <div>
-                <h4 class="text-right">Profil studenta</h4><br>
-                <button class="btn btn-outline-primary" style="width: 180px; margin-bottom: 10px;" type="button" (click)="PolozeniPredmeti(studentDto.id)">Položeni predmeti</button>
-                <button class="btn btn-outline-primary" style="width: 180px; margin-bottom: 10px;" type="button">Nepoloženi predmeti</button>
-                <button class="btn btn-outline-primary" style="width: 180px; margin-bottom: 10px;" type="button">Sluša predmete</button>
-                <button class="btn btn-outline-primary" style="width: 180px; margin-bottom: 10px;" type="button">Upisi godine</button>
-                <button class="btn btn-outline-primary" style="width: 180px; margin-bottom: 10px;" type="button">Obnove godine</button>
-                <button class="btn btn-outline-primary" style="width: 180px; margin-bottom: 10px;" type="button">Uplate</button>
-                <button class="btn btn-outline-primary" style="width: 180px; margin-bottom: 10px;" type="button">Prijave ispita</button>
-            </div>
-        </div>
-        <div class="col-md-5 border-right">
-            <div>
-                <h4 class="text-right">Osnovni podaci</h4>
-                <div class="row mt-2">
-                    <div class="col-md-4"><label class="labels">Ime</label><input [(ngModel)]="studentDto.student.ime" disabled="true" type="text" class="form-control" placeholder="ime" value=""></div>
-                    <div class="col-md-4"><label class="labels">Srednje ime</label><input [(ngModel)]="studentDto.student.srednjeIme" disabled="true" type="text" class="form-control" placeholder="srednje ime" value=""></div>
-                    <div class="col-md-4"><label class="labels">Prezime</label><input [(ngModel)]="studentDto.student.prezime" disabled="true" type="text" class="form-control" placeholder="prezime" value=""></div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">JMBG</label><input [(ngModel)]="studentDto.student.jmbg" disabled="true" type="text" class="form-control" placeholder="jmbg" value=""></div>
-                    <div class="col-md-6"><label class="labels">Pol</label><input [(ngModel)]="studentDto.student.pol" disabled="true" type="text" class="form-control" placeholder="pol" value=""></div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Datum rođenja</label><input [(ngModel)]="studentDto.student.datumRodjenja" disabled="true" type="date" class="form-control" placeholder="datum rođenja" value=""></div>
-                    <div class="col-md-6"><label class="labels">Mesto rođenja</label><input [(ngModel)]="studentDto.student.mestoRodjenja" disabled="true" type="text" class="form-control" placeholder="mesto rođenja" value=""></div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Adresa</label><input [(ngModel)]="studentDto.student.adresa" disabled="true" type="text" class="form-control" placeholder="adresa" value=""></div>
-                    <div class="col-md-6"><label class="labels">Mesto prebivališta</label><input [(ngModel)]="studentDto.student.mestoPrebivalista" disabled="true" type="text" class="form-control" placeholder="mesto prebivališta" value=""></div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-6"><label class="labels">Broj mobilnog telefona</label><input [(ngModel)]="studentDto.student.brojTelefonaMobilni" disabled="true" type="text" class="form-control" placeholder="broj mobilnog telefona" value=""></div>
-                    <div class="col-md-6"><label class="labels">Email</label><input [(ngModel)]="studentDto.student.email" disabled="true" type="text" class="form-control" placeholder="email" value=""></div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-4"><label class="labels">Smer</label><input [(ngModel)]="studentDto.studProgramOznaka" disabled="true" type="text" class="form-control" placeholder="smer" value=""></div>
-                    <div class="col-md-4"><label class="labels">Broj upisa</label><input [(ngModel)]="studentDto.broj" disabled="true" type="number" class="form-control" value="" placeholder="broj upisa"></div>
-                    <div class="col-md-4"><label class="labels">Godina upisa</label><input [(ngModel)]="studentDto.godina" disabled="true" type="number" class="form-control" value="" placeholder="godina upisa"></div>
-                </div>
-                <!-- <div class="mt-5 text-center"><button class="btn btn-primary" type="button">Sačuvaj</button></div> -->
-            </div>
-        </div>
-        <div class="col-md-3 border-right p-1">
-            <div class="d-flex flex-column align-items-center text-left mt-5">
-                <img class="rounded-circle mt-1" width="180px" src="https://cdn-icons-png.flaticon.com/512/12058/12058199.png">
-                <span class="font-weight-bold">{{studentDto.student.ime}} {{studentDto.student.prezime}}</span>
-                <span class="text-black-50">{{studentDto.student.email}}</span>
-            </div>
-        </div>
-        
-        <!-- <div class="col-md-4">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
-                <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
-                <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
-            </div>
-        </div> -->
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">Profil studenta</button>
+      <button class="nav-link" id="nav-polozeni-tab" data-bs-toggle="tab" data-bs-target="#nav-polozeni" type="button" role="tab" aria-controls="nav-polozeni" aria-selected="false">Položeni predmeti</button>
+      <button class="nav-link" id="nav-nepolozeni-tab" data-bs-toggle="tab" data-bs-target="#nav-nepolozeni" type="button" role="tab" aria-controls="nav-nepolozeni" aria-selected="false">Nepoloženi predmeti</button>
+      <button class="nav-link" id="nav-slusa-tab" data-bs-toggle="tab" data-bs-target="#nav-slusa" type="button" role="tab" aria-controls="nav-slusa" aria-selected="false">Sluša predmete</button>
+      <button class="nav-link" id="nav-upisi-tab" data-bs-toggle="tab" data-bs-target="#nav-upisi" type="button" role="tab" aria-controls="nav-upisi" aria-selected="false">Upisi godine</button>
+      <button class="nav-link" id="nav-obnove-tab" data-bs-toggle="tab" data-bs-target="#nav-obnove" type="button" role="tab" aria-controls="nav-obnove" aria-selected="false">Obnove godine</button>
+      <button class="nav-link" id="nav-uplate-tab" data-bs-toggle="tab" data-bs-target="#nav-uplate" type="button" role="tab" aria-controls="nav-uplate" aria-selected="false">Uplate</button>
+      <button class="nav-link" id="nav-prijave-tab" data-bs-toggle="tab" data-bs-target="#nav-prijave" type="button" role="tab" aria-controls="nav-prijave" aria-selected="false">Prijave ispita</button>
     </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0"><app-student-profile [studentProfile]="studentProfile"></app-student-profile></div>
+    <div class="tab-pane" id="nav-polozeni" role="tabpanel" aria-labelledby="nav-polozeni-tab" tabindex="1"><app-sudent-polozeni-predmeti [studentProfile]="studentProfile"></app-sudent-polozeni-predmeti></div>
+    <div class="tab-pane" id="nav-nepolozeni" role="tabpanel" aria-labelledby="nav-nepolozeni-tab" tabindex="2"><app-nepolozeni-predmeti [studentProfile]="studentProfile"></app-nepolozeni-predmeti></div>
+    <div class="tab-pane" id="nav-slusa" role="tabpanel" aria-labelledby="nav-slusa-tab" tabindex="3"><app-slusa-predmete [studentProfile]="studentProfile"></app-slusa-predmete></div>
+    <div class="tab-pane" id="nav-upisi" role="tabpanel" aria-labelledby="nav-upisi-tab" tabindex="4"><app-upisi-godine [studentProfile]="studentProfile"></app-upisi-godine></div>
+    <div class="tab-pane" id="nav-obnove" role="tabpanel" aria-labelledby="nav-obnove-tab" tabindex="5"><app-obnove-godine [studentProfile]="studentProfile"></app-obnove-godine></div>
+    <div class="tab-pane" id="nav-uplate" role="tabpanel" aria-labelledby="nav-uplate-tab" tabindex="6"><app-uplate [studentProfile]="studentProfile"></app-uplate></div>
+    <div class="tab-pane" id="nav-prijave" role="tabpanel" aria-labelledby="nav-prijave-tab" tabindex="7"><app-prijave-ispita [studentProfile]="studentProfile"></app-prijave-ispita></div>
 </div>

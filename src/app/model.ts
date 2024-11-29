@@ -3,10 +3,10 @@ export interface StudentProfile {
   polozeniPredmeti: PolozeniPredmeti[]
   upisiGodine: UpisiGodine[]
   obnoveGodine: ObnoveGodine[]
-  uplate: any[]
+  uplate: Uplata[]
   prijaveIspita: PrijaveIspita[]
-  slusaPredmete: Predmet[]
-  nepolozeniPredmeti: any[]
+  slusaPredmete: SlusaPredmet[]
+  nepolozeniPredmeti: Predmet[]
 }
 
 export interface Indeks {
@@ -153,6 +153,11 @@ export interface Ispit {
   datumPredajeZapisnika: string
   datumVerifikacije: string
 }
+export interface SlusaPredmet {
+  id: number
+  studentIndeks: StudentIndeks
+  drziPredmet: DrziPredmet
+}
 
 export interface DrziPredmet {
   id: number
@@ -177,4 +182,13 @@ export interface IspitniRok {
   datumPocetkaPrijave: any
   datumZavrsetkaPrijave: any
   skolskaGodina: SkolskaGodina
+}
+
+export interface Uplata {
+  id: number
+  studentIndeks: StudentIndeks
+  nacinUplate: string
+  iznos: number
+  kurs: number
+  datum: string
 }

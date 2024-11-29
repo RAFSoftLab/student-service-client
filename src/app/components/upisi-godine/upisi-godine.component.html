@@ -1,0 +1,34 @@
+<br>
+<div *ngIf="studentProfile != undefined" class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <h6 class="text-black-50">
+                {{studentProfile.indeks.student.ime}} {{studentProfile.indeks.student.prezime}}
+                {{studentProfile.indeks.studProgramOznaka}}{{studentProfile.indeks.broj}}/{{studentProfile.indeks.godina}}
+            </h6>
+            <br>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Datum upisa</th>
+                    <th scope="col">Godina koja se upisuje</th>
+                    <th scope="col">Prenos ESPB</th>
+                    <th scope="col">Školska godina</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let upisGodine of studentProfile.upisiGodine; let i = index">
+                    <th scope="row">{{ i+1 }}</th>
+                    <td>{{upisGodine.datumUpisa}}</td>
+                    <td>{{upisGodine.godinaKojaSeUpisuje}}</td>
+                    <td>{{upisGodine.prenosEspb}}</td>
+                    <td>{{upisGodine.skolskaGodina.pocetna}}/{{upisGodine.skolskaGodina.krajnja}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

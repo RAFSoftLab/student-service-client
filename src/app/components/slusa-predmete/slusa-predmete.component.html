@@ -12,23 +12,21 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Naziv</th>
+                    <th scope="col">Predmet</th>
                     <th scope="col">Profesor</th>
-                    <th scope="col">Ocena</th>
                     <th scope="col">ESPB</th>
                     <th scope="col">Semestar</th>
                     <th scope="col">Fond</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let polozenPredmet of studentProfile.polozeniPredmeti; let i = index">
+                <tr *ngFor="let slusaPredmet of studentProfile.slusaPredmete; let i = index">
                     <th scope="row">{{ i+1 }}</th>
-                    <td>{{polozenPredmet.predmet.naziv}}</td>
-                    <td>{{polozenPredmet.nastavnik.ime}} {{polozenPredmet.nastavnik.prezime}}</td>
-                    <td>{{polozenPredmet.ocena}}</td>
-                    <td>{{polozenPredmet.predmet.espb}}</td>
-                    <td>{{polozenPredmet.predmet.semestar}}</td>
-                    <td>{{polozenPredmet.predmet.fondPredavanja}} + {{polozenPredmet.predmet.fondVezbe}}</td>
+                    <td>{{slusaPredmet.drziPredmet.predmet.naziv}}</td>
+                    <td>{{slusaPredmet.drziPredmet.nastavnik.ime}} {{slusaPredmet.drziPredmet.nastavnik.prezime}}</td>
+                    <td>{{slusaPredmet.drziPredmet.predmet.espb}}</td>
+                    <td>{{slusaPredmet.drziPredmet.predmet.semestar}}</td>
+                    <td>{{slusaPredmet.drziPredmet.predmet.fondPredavanja}} + {{slusaPredmet.drziPredmet.predmet.fondVezbe}}</td>
                 </tr>
                 </tbody>
             </table>

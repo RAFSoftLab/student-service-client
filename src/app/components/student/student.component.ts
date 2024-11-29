@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentIndeks, StudentProfile } from 'src/app/model';
 import { StudentService } from 'src/app/services/student.service';
 
@@ -19,7 +19,7 @@ export class StudentComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    console.log('ngOnInit student profile')
+    console.log('ngOnInit student component')
     const indeksShort: string = <string>this.route.snapshot.paramMap.get('indeksShort');
     this.studentService.findStudentByIndeksShort(indeksShort).subscribe(
       response => {
@@ -35,14 +35,5 @@ export class StudentComponent implements OnInit{
       error => {
       }
     )
-  }
-
-  PolozeniPredmeti(studentIndeksId: number){
-    const navigationExtras: NavigationExtras = {
-      state: {
-        data: this.studentProfile
-      }
-    };
-    this.router.navigate(['polozeni-predmeti'], navigationExtras);
   }
 }
