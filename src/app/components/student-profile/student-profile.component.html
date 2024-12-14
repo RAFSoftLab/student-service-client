@@ -5,40 +5,82 @@
 
         <div class="col-md-3 border-right">
             <div class="d-flex flex-column align-items-center text-left mt-5">
-                <img class="rounded-circle mt-1" width="180px" src="https://cdn-icons-png.flaticon.com/512/12058/12058199.png">
+                <img class="rounded-circle mt-1" width="180px" [src]="getImage()">
                 <span class="font-weight-bold">{{studentProfile.indeks.student.ime}} {{studentProfile.indeks.student.prezime}}</span>
                 <span class="text-black-50">{{studentProfile.indeks.student.email}}</span>
             </div>
+            
+            <!-- <div class="upload-container">
+                <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+                <button class="btn btn-primary" type="button" (click)="onUpload()">Sačuvaj sliku</button>
+            </div> -->
+            <div *ngIf="studentProfile.indeks.id == undefined" class="mb-3">
+                <label for="formFileSm" class="labels">Izaberite sliku</label>
+                <input class="form-control form-control-sm" id="formFileSm" type="file" (change)="onFileSelected($event)" accept="image/*">
+            </div>
+              
+              <!-- Display selected image preview -->
+              <!-- <div *ngIf="imagePreview">
+                <h3>Image Preview:</h3>
+                <img [src]="imagePreview" alt="Image Preview" style="width: 200px; height: auto;" />
+              </div> -->
         </div>
         <div class="col-md-5 border-right">
             <div>
-                <div class="row mt-2">
-                    <div class="col-md-4"><label class="labels">Ime</label><input [(ngModel)]="studentProfile.indeks.student.ime" disabled="true" type="text" class="form-control" placeholder="ime" value=""></div>
-                    <div class="col-md-4"><label class="labels">Srednje ime</label><input [(ngModel)]="studentProfile.indeks.student.srednjeIme" disabled="true" type="text" class="form-control" placeholder="srednje ime" value=""></div>
-                    <div class="col-md-4"><label class="labels">Prezime</label><input [(ngModel)]="studentProfile.indeks.student.prezime" disabled="true" type="text" class="form-control" placeholder="prezime" value=""></div>
+                <div class="row mt-1">
+                    <div class="col-md-4"><label class="labels">Ime</label><input [(ngModel)]="studentProfile.indeks.student.ime" [disabled]="studentProfile.indeks.id != undefined" type="text" class="form-control" placeholder="ime" value=""></div>
+                    <div class="col-md-4"><label class="labels">Srednje ime</label><input [(ngModel)]="studentProfile.indeks.student.srednjeIme" [disabled]="studentProfile.indeks.id != undefined" type="text" class="form-control" placeholder="srednje ime" value=""></div>
+                    <div class="col-md-4"><label class="labels">Prezime</label><input [(ngModel)]="studentProfile.indeks.student.prezime" [disabled]="studentProfile.indeks.id != undefined" type="text" class="form-control" placeholder="prezime" value=""></div>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">JMBG</label><input [(ngModel)]="studentProfile.indeks.student.jmbg" disabled="true" type="text" class="form-control" placeholder="jmbg" value=""></div>
-                    <div class="col-md-6"><label class="labels">Pol</label><input [(ngModel)]="studentProfile.indeks.student.pol" disabled="true" type="text" class="form-control" placeholder="pol" value=""></div>
+                <div class="row mt-1">
+                    <div class="col-md-6"><label class="labels">JMBG</label><input [(ngModel)]="studentProfile.indeks.student.jmbg" [disabled]="studentProfile.indeks.id != undefined" type="text" class="form-control" placeholder="jmbg" value=""></div>
+                    <div class="col-md-6"><label class="labels">Pol</label>
+                        <!-- <input [(ngModel)]="studentProfile.indeks.student.pol" [disabled]="studentProfile.indeks.id != undefined" type="text" class="form-control" placeholder="pol" value=""> -->
+                        <select class="form-select" aria-label="Pol" [(ngModel)]="studentProfile.indeks.student.pol" [disabled]="studentProfile.indeks.id != undefined">
+                            <option value="m">Muško</option>
+                            <option value="z">Žensko</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Datum rođenja</label><input [(ngModel)]="studentProfile.indeks.student.datumRodjenja" disabled="true" type="date" class="form-control" placeholder="datum rođenja" value=""></div>
-                    <div class="col-md-6"><label class="labels">Mesto rođenja</label><input [(ngModel)]="studentProfile.indeks.student.mestoRodjenja" disabled="true" type="text" class="form-control" placeholder="mesto rođenja" value=""></div>
+                <div class="row mt-1">
+                    <div class="col-md-6"><label class="labels">Datum rođenja</label><input [(ngModel)]="studentProfile.indeks.student.datumRodjenja" [disabled]="studentProfile.indeks.id != undefined" type="date" class="form-control" placeholder="datum rođenja" value=""></div>
+                    <div class="col-md-6"><label class="labels">Mesto rođenja</label><input [(ngModel)]="studentProfile.indeks.student.mestoRodjenja" [disabled]="studentProfile.indeks.id != undefined" type="text" class="form-control" placeholder="mesto rođenja" value=""></div>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Adresa</label><input [(ngModel)]="studentProfile.indeks.student.adresa" disabled="true" type="text" class="form-control" placeholder="adresa" value=""></div>
-                    <div class="col-md-6"><label class="labels">Mesto prebivališta</label><input [(ngModel)]="studentProfile.indeks.student.mestoPrebivalista" disabled="true" type="text" class="form-control" placeholder="mesto prebivališta" value=""></div>
+                <div class="row mt-1">
+                    <div class="col-md-6"><label class="labels">Nacionalnost</label><input [(ngModel)]="studentProfile.indeks.student.nacionalnost" [disabled]="studentProfile.indeks.id != undefined" type="text" class="form-control" placeholder="nacionalnost" value=""></div>
+                    <div class="col-md-6"><label class="labels">Državljanstvo</label><input [(ngModel)]="studentProfile.indeks.student.drzavljanstvo" [disabled]="studentProfile.indeks.id != undefined" type="text" class="form-control" placeholder="državljanstvo" value=""></div>
                 </div>
-                <div class="row mt-3">
-                    <div class="col-md-6"><label class="labels">Broj mobilnog telefona</label><input [(ngModel)]="studentProfile.indeks.student.brojTelefonaMobilni" disabled="true" type="text" class="form-control" placeholder="broj mobilnog telefona" value=""></div>
-                    <div class="col-md-6"><label class="labels">Email</label><input [(ngModel)]="studentProfile.indeks.student.email" disabled="true" type="text" class="form-control" placeholder="email" value=""></div>
+                <div class="row mt-1">
+                    <div class="col-md-6"><label class="labels">Adresa</label><input [(ngModel)]="studentProfile.indeks.student.adresa" [disabled]="studentProfile.indeks.id != undefined" type="text" class="form-control" placeholder="adresa" value=""></div>
+                    <div class="col-md-6"><label class="labels">Mesto prebivališta</label><input [(ngModel)]="studentProfile.indeks.student.mestoPrebivalista" [disabled]="studentProfile.indeks.id != undefined" type="text" class="form-control" placeholder="mesto prebivališta" value=""></div>
                 </div>
-                <div class="row mt-3">
-                    <div class="col-md-4"><label class="labels">Smer</label><input [(ngModel)]="studentProfile.indeks.studProgramOznaka" disabled="true" type="text" class="form-control" placeholder="smer" value=""></div>
-                    <div class="col-md-4"><label class="labels">Broj upisa</label><input [(ngModel)]="studentProfile.indeks.broj" disabled="true" type="number" class="form-control" value="" placeholder="broj upisa"></div>
-                    <div class="col-md-4"><label class="labels">Godina upisa</label><input [(ngModel)]="studentProfile.indeks.godina" disabled="true" type="number" class="form-control" value="" placeholder="godina upisa"></div>
+                <div class="row mt-1">
+                    <div class="col-md-6"><label class="labels">Broj mobilnog telefona</label><input [(ngModel)]="studentProfile.indeks.student.brojTelefonaMobilni" [disabled]="studentProfile.indeks.id != undefined" type="text" class="form-control" placeholder="broj mobilnog telefona" value=""></div>
+                    <div class="col-md-6"><label class="labels">Email</label><input [(ngModel)]="studentProfile.indeks.student.email" [disabled]="studentProfile.indeks.id != undefined" type="text" class="form-control" placeholder="email" value=""></div>
                 </div>
-                <!-- <div class="mt-5 text-center"><button class="btn btn-primary" type="button">Sačuvaj</button></div> -->
+                <div class="row mt-1">
+                    <div class="col-md-12"><label class="labels">Studijski program</label>
+                        <!-- <input [(ngModel)]="studentProfile.indeks.studProgramOznaka" [disabled]="studentProfile.indeks.id != undefined" type="text" class="form-control" placeholder="smer" value=""> -->
+                        <select class="form-select" aria-label="Smer" [(ngModel)]="studentProfile.indeks.studProgramOznaka" [disabled]="studentProfile.indeks.id != undefined">
+                            <option *ngFor="let studijskiProgram of this.studijskiProgrami; let i = index;" [value]="studijskiProgram.oznaka">{{studijskiProgram.oznaka}} - {{studijskiProgram.naziv}} ({{studijskiProgram.vrstaStudija}})</option>
+                        </select>
+                    </div>
+                </div>
+                <div *ngIf="studentProfile.indeks.id != undefined" class="row mt-1">
+                    <div class="col-md-6"><label class="labels">Broj upisa</label><input [(ngModel)]="studentProfile.indeks.broj" [disabled]="studentProfile.indeks.id != undefined" type="number" class="form-control" value="" placeholder="broj upisa"></div>
+                    <div class="col-md-6"><label class="labels">Godina upisa</label><input [(ngModel)]="studentProfile.indeks.godina" [disabled]="studentProfile.indeks.id != undefined" type="number" class="form-control" value="" placeholder="godina upisa"></div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-md-12"><label class="labels">Način finansiranja</label>
+                        <select class="form-select" aria-label="Način finansiranja" [(ngModel)]="studentProfile.indeks.nacinFinansiranja" [disabled]="studentProfile.indeks.id != undefined">
+                            <option value="samofinansiranje">Samofinansiranje</option>
+                            <option value="stipendija">Stipendija</option>
+                        </select>
+                    </div>
+                </div>
+                <!--  -->
+                <div *ngIf="studentProfile.indeks.id == undefined" class="mt-4 text-center"><button class="btn btn-primary" type="button" (click)="saveNewStudent()">Sačuvaj</button></div>
+                <div class="row mt-3"></div>
             </div>
         </div>
         <div class="col-md-3 border-right p-1">

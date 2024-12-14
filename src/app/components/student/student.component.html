@@ -1,4 +1,5 @@
-<nav>
+<div *ngIf="studentProfile != undefined" class="container">
+  <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
       <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">Profil studenta</button>
       <button class="nav-link" id="nav-polozeni-tab" data-bs-toggle="tab" data-bs-target="#nav-polozeni" type="button" role="tab" aria-controls="nav-polozeni" aria-selected="false">Položeni predmeti</button>
@@ -9,8 +10,8 @@
       <button class="nav-link" id="nav-uplate-tab" data-bs-toggle="tab" data-bs-target="#nav-uplate" type="button" role="tab" aria-controls="nav-uplate" aria-selected="false">Uplate</button>
       <button class="nav-link" id="nav-prijave-tab" data-bs-toggle="tab" data-bs-target="#nav-prijave" type="button" role="tab" aria-controls="nav-prijave" aria-selected="false">Prijave ispita</button>
     </div>
-</nav>
-<div class="tab-content" id="nav-tabContent">
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0"><app-student-profile [studentProfile]="studentProfile"></app-student-profile></div>
     <div class="tab-pane" id="nav-polozeni" role="tabpanel" aria-labelledby="nav-polozeni-tab" tabindex="1"><app-sudent-polozeni-predmeti [studentProfile]="studentProfile"></app-sudent-polozeni-predmeti></div>
     <div class="tab-pane" id="nav-nepolozeni" role="tabpanel" aria-labelledby="nav-nepolozeni-tab" tabindex="2"><app-nepolozeni-predmeti [studentProfile]="studentProfile"></app-nepolozeni-predmeti></div>
@@ -19,4 +20,5 @@
     <div class="tab-pane" id="nav-obnove" role="tabpanel" aria-labelledby="nav-obnove-tab" tabindex="5"><app-obnove-godine [studentProfile]="studentProfile"></app-obnove-godine></div>
     <div class="tab-pane" id="nav-uplate" role="tabpanel" aria-labelledby="nav-uplate-tab" tabindex="6"><app-uplate [studentProfile]="studentProfile"></app-uplate></div>
     <div class="tab-pane" id="nav-prijave" role="tabpanel" aria-labelledby="nav-prijave-tab" tabindex="7"><app-prijave-ispita [studentProfile]="studentProfile"></app-prijave-ispita></div>
+  </div>
 </div>

@@ -21,6 +21,15 @@ export interface Indeks {
   studijskiProgram: StudijskiProgram
 }
 
+export interface IndeksRequest {
+  godina: number
+  studProgramOznaka: string
+  nacinFinansiranja: any
+  aktivan: boolean
+  vaziOd: any
+  studentId: number
+}
+
 export interface Student {
   id: number
   ime: string
@@ -37,7 +46,7 @@ export interface Student {
   adresa: string
   brojTelefonaMobilni: string
   brojTelefonaFiksni: string
-  slika: any
+  slika: string
   email: string
   brojLicneKarte: any
   licnuKartuIzdao: any

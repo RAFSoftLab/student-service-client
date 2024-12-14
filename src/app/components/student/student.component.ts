@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentIndeks, StudentProfile } from 'src/app/model';
+import { Indeks, Student, StudentIndeks, StudentProfile, StudijskiProgram } from 'src/app/model';
 import { StudentService } from 'src/app/services/student.service';
 
 @Component({
@@ -11,7 +11,6 @@ import { StudentService } from 'src/app/services/student.service';
 export class StudentComponent implements OnInit{
 
   studentService: StudentService;
-  studentDto!: StudentIndeks;
   studentProfile!: StudentProfile;
 
   constructor(private route: ActivatedRoute, private router: Router, studentService : StudentService) {
@@ -19,21 +18,47 @@ export class StudentComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    console.log('ngOnInit student component')
     const indeksShort: string = <string>this.route.snapshot.paramMap.get('indeksShort');
-    this.studentService.findStudentByIndeksShort(indeksShort).subscribe(
-      response => {
-          this.studentDto = response
-          this.studentService.getStudentProfile(this.studentDto.id).subscribe(
-            response => {
-                this.studentProfile = response
-            },
-            error => {
-            }
-          )
-      },
-      error => {
-      }
-    )
+
+    if (indeksShort === "-1"){
+        this.studentProfile = <StudentProfile>{ };
+        this.studentProfile.indeks = <Indeks>{ godina: 2025 };
+        this.studentProfile.indeks.student = <Student>{ };
+        this.studentProfile.indeks.studijskiProgram = <StudijskiProgram>{ };
+    }else{
+      this.studentService.findStudentByIndeksShort(indeksShort).subscribe(
+        studentDto => {
+            this.studentService.getStudentProfile(studentDto.id).subscribe(
+              response => {
+                  this.studentService.getUploadedImage(studentDto.student.id).subscribe(
+                    slikaByte => {
+                      response.indeks.student.slika = this.arrayBufferToBase64(slikaByte)
+                      this.studentProfile = response
+                    }
+                  )
+              },
+              error => {
+                alert('Ne postoji student sa indeksom ' + indeksShort)
+              }
+            )
+        },
+        error => {
+          alert('Ne postoji student sa indeksom ' + indeksShort)
+        }
+      )
+    }
   }
+
+  // Convert byte array to Base64 string
+  arrayBufferToBase64(buffer: Uint8Array): string {
+    let binary = '';
+    const bytes = new Uint8Array(buffer);
+    const length = bytes.byteLength;
+    if (length === 0) return '';
+    for (let i = 0; i < length; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return 'data:image/jpeg;base64,' + window.btoa(binary); // Change image type if necessary
+  }
+
 }

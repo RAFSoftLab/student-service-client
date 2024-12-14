@@ -16,6 +16,7 @@ import { SlusaPredmeteComponent } from './components/slusa-predmete/slusa-predme
 import { UpisiGodineComponent } from './components/upisi-godine/upisi-godine.component';
 import { ObnoveGodineComponent } from './components/obnove-godine/obnove-godine.component';
 import { UplateComponent } from './components/uplate/uplate.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { UplateComponent } from './components/uplate/uplate.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

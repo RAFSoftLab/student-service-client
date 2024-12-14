@@ -7,14 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" [routerLink]="'/'" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Studenti
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Osnovni podaci</a></li>
-            <li><a class="dropdown-item" href="#">Položeni predmeti</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Nepoloženi predmeti</a></li>
+            <li><a class="dropdown-item" [routerLink]="'student/-1'" >Dodaj novog studenta</a></li>
+            <!-- <li><hr class="dropdown-divider"></li> -->
+            <!-- <li><a class="dropdown-item" href="#">Nepoloženi predmeti</a></li> -->
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -22,8 +21,7 @@
             Profesori
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Osnovni podaci</a></li>
-            <li><a class="dropdown-item" href="#">Predmeti</a></li>
+            <li><a class="dropdown-item" href="#">Dodaj novog profesora</a></li>
           </ul>
         </li>
       </ul>
