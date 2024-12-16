@@ -18,35 +18,28 @@ export class StudentComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    const indeksShort: string = <string>this.route.snapshot.paramMap.get('indeksShort');
-
-    if (indeksShort === "-1"){
+    const idStudentIndeks: number = parseInt(<string>this.route.snapshot.paramMap.get('idStudentIndeks'));
+    if (idStudentIndeks === -1){
         this.studentProfile = <StudentProfile>{ };
         this.studentProfile.indeks = <Indeks>{ godina: 2025 };
         this.studentProfile.indeks.student = <Student>{ };
         this.studentProfile.indeks.studijskiProgram = <StudijskiProgram>{ };
-    }else{
-      this.studentService.findStudentByIndeksShort(indeksShort).subscribe(
-        studentDto => {
-            this.studentService.getStudentProfile(studentDto.id).subscribe(
-              response => {
-                  this.studentService.getUploadedImage(studentDto.student.id).subscribe(
-                    slikaByte => {
-                      response.indeks.student.slika = this.arrayBufferToBase64(slikaByte)
-                      this.studentProfile = response
-                    }
-                  )
-              },
-              error => {
-                alert('Ne postoji student sa indeksom ' + indeksShort)
-              }
-            )
-        },
-        error => {
-          alert('Ne postoji student sa indeksom ' + indeksShort)
-        }
-      )
+        return;
     }
+     
+    this.studentService.getStudentProfile(idStudentIndeks).subscribe(
+      response => {
+          this.studentService.getUploadedImage(response.indeks.student.id).subscribe(
+            slikaByte => {
+              response.indeks.student.slika = this.arrayBufferToBase64(slikaByte)
+              this.studentProfile = response
+            }
+          )
+      },
+      error => {
+        alert('Student nije pronađen!')
+      }
+    )
   }
 
   // Convert byte array to Base64 string

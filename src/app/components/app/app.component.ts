@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
 
   indeks : string;
   studentService: StudentService;
@@ -18,18 +18,26 @@ export class AppComponent implements OnInit{
     this.studentService = studentService
     this.router = router
   }
+  
   pretraziPoIndeksu(){
-    
-    if (this.indeks != '')
-      this.router.navigate(['student', this.indeks]);
+    if (this.indeks != ''){
+      this.studentService.findStudentByIndeksShort(this.indeks).subscribe(
+        studentIndeks => {
+          if (studentIndeks == null){
+            alert('Ne postoji student sa indeksom ' + this.indeks)
+            return
+          }
+          this.router.navigate(['student', studentIndeks.id]);
+        },
+        error => {
+          alert('Ne postoji student sa indeksom ' + this.indeks)
+        }
+      )
+    }
   }
 
   backToAppComponent(){
     this.router.navigate(['']);
-  }
-
-  ngOnInit(): void {
-
   }
 
 }

@@ -1,2 +1,52 @@
-<div ></div>
+<br>
+<div *ngIf="students != undefined" class="container">
+    <div class="row mt-1">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <label class="labels">Studijski program</label>
+            <select class="form-select" aria-label="Smer" [(ngModel)]="selectedStudProgram" (change)="promenaStudijskogPrograma()">
+                <option *ngFor="let studijskiProgram of this.studijskiProgrami; let i = index;" [value]="studijskiProgram.oznaka">{{studijskiProgram.oznaka}} - {{studijskiProgram.naziv}} ({{studijskiProgram.vrstaStudija}})</option>
+            </select>
+        </div>
+        <!-- <form (submit)="searchStudents()" class="d-flex" role="search"> -->
+            <div class="col-md-1"><label class="labels">Broj</label><input [(ngModel)]="brojSearch" type="number" class="form-control" placeholder="broj" value=""></div>
+            <div class="col-md-2"><label class="labels">Godina</label><input [(ngModel)]="godinaSearch" type="number" class="form-control" placeholder="godina" value=""></div>
+            <div class="col-md-2"><label class="labels">Ime</label><input [(ngModel)]="imeSearch" type="text" class="form-control" placeholder="ime" value=""></div>
+            <div class="col-md-2"><label class="labels">Prezime</label><input [(ngModel)]="prezimeSearch" type="text" class="form-control" placeholder="prezime" value=""></div>    
+            <div class="col-md-1"><label class="labels">Pretraga</label><button class="btn btn-outline-primary" type="button" (click)="searchStudents()">Nađi</button></div>
+        <!-- </form> -->
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <!-- <h6 class="text-black-50"></h6>
+            <br> -->
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Ime i prezime</th>
+                    <th scope="col">Indeks</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of students; let i = index">
+                        <th scope="row">{{student.idStudentPodaci}}</th>
+                        <td><a [routerLink]="['/student', student.idIndeks]">{{student.ime}} {{student.prezime}}</a></td>
+                        <td>{{student.studProgramOznaka}}{{student.broj}}/{{student.godinaUpisa}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-1">
+            <input [(ngModel)]="currentPage" type="number" class="form-control" value="" min="1" max="{{totalPages}}" (keydown.enter)="searchStudents()">
+            <span class="text-black-50">{{currentPage}} od {{totalPages}}</span>
+        </div>
+    </div>
+
+</div>

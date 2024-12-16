@@ -53,6 +53,23 @@ export interface Student {
   mestoStanovanja: any
   adresaStanovanja: any
   prviUpis: any
+  studentIndeksId: number
+}
+
+export interface StudentDTO {
+  idStudentPodaci: number
+  idIndeks: number
+  ime: string
+  prezime: string
+  godinaUpisa: number
+  studProgramOznaka: string
+  broj: number
+}
+
+export interface StudentPageable{
+  content: StudentDTO[]
+  totalPages: number
+  size: number
 }
 
 export interface StudijskiProgram {
