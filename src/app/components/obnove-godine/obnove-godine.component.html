@@ -2,12 +2,40 @@
 <div *ngIf="studentProfile.obnoveGodine != undefined" class="container">
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-10">
+        <div class="col-md-9">
             <h6 class="text-black-50">
                 {{studentProfile.indeks.student.ime}} {{studentProfile.indeks.student.prezime}}
                 {{studentProfile.indeks.studProgramOznaka}}{{studentProfile.indeks.broj}}/{{studentProfile.indeks.godina}}
             </h6>
-            <br>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#obnovaModal">Obnovi godinu</button>
+            <div class="modal fade" id="obnovaModal" tabindex="-1" aria-labelledby="obnovaModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="obnovaModalLabel">Nova obnova godine</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="obnovaFormControlTextarea1" class="form-label">Napomena</label>
+                            <textarea class="form-control" id="obnovaFormControlTextarea1" rows="3"></textarea>
+                          </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
+                      <button type="button" class="btn btn-primary">Sačuvaj</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
             <table class="table">
                 <thead>
                 <tr>

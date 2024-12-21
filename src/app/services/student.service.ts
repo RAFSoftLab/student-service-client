@@ -52,7 +52,6 @@ export class StudentService {
       url += `&ime=${ime}`
     if (prezime != null && prezime != '')
       url += `&prezime=${prezime}`
-    console.log('ime ' + ime)
     return this.httpClient.get<StudentPageable>(url)
   }
 
