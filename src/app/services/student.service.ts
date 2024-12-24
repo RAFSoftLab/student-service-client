@@ -55,4 +55,12 @@ export class StudentService {
     return this.httpClient.get<StudentPageable>(url)
   }
 
+  addNewUpis(studentId: number, napomena: string): Observable<number> {
+    return this.httpClient.post<number>(`${this.apiUrl}/tok/upis/add`, {"studentId": studentId, "napomena": napomena})
+  }
+
+  addNewObnova(studentId: number, napomena: string): Observable<number> {
+    return this.httpClient.post<number>(`${this.apiUrl}/tok/obnova/add`, {"studentId": studentId, "napomena": napomena})
+  }
+
 }

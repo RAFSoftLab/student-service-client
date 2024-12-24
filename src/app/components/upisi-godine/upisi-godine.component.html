@@ -9,8 +9,9 @@
             </h6>
         </div>
         <div class="col-md-2">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Upiši godinu</button>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#upisModal">Upiši godinu</button> -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#upisModal">Upiši godinu</button>
+            <div class="modal fade" id="upisModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -20,16 +21,16 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Napomena</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="napomena"></textarea>
                           </div>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
-                      <button type="button" class="btn btn-primary">Sačuvaj</button>
+                      <button type="button" class="btn btn-primary" (click)="dodajNoviUpis()">Sačuvaj</button>
                     </div>
                   </div>
                 </div>
-              </div>
+            </div>
         </div>
     </div>
     <br>
