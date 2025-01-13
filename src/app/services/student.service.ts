@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {IndeksRequest, Student, StudentIndeks, StudentPageable, StudentProfile, StudijskiProgram} from "../model";
+import {IndeksRequest, ObnovaGodine, Student, StudentIndeks, StudentPageable, StudentProfile, StudijskiProgram, UpisGodine} from "../model";
 
 @Injectable({
   providedIn: 'root'
@@ -55,12 +55,20 @@ export class StudentService {
     return this.httpClient.get<StudentPageable>(url)
   }
 
-  addNewUpis(studentId: number, napomena: string): Observable<number> {
-    return this.httpClient.post<number>(`${this.apiUrl}/tok/upis/add`, {"studentId": studentId, "napomena": napomena})
+  addNewUpis(upisGodine: UpisGodine): Observable<number> {
+    return this.httpClient.post<number>(`${this.apiUrl}/tok/upis/add`, upisGodine)
   }
 
-  addNewObnova(studentId: number, napomena: string): Observable<number> {
-    return this.httpClient.post<number>(`${this.apiUrl}/tok/obnova/add`, {"studentId": studentId, "napomena": napomena})
+  addNewObnova(obnovaGodine: ObnovaGodine): Observable<number> {
+    return this.httpClient.post<number>(`${this.apiUrl}/tok/obnova/add`, obnovaGodine)
+  }
+
+  initNewUpis(studentId: number, napomena: string): Observable<UpisGodine> {
+    return this.httpClient.post<UpisGodine>(`${this.apiUrl}/tok/upis/init`, {"studentId": studentId, "napomena": napomena})
+  }
+
+  initNewObnova(studentId: number, napomena: string): Observable<ObnovaGodine> {
+    return this.httpClient.post<ObnovaGodine>(`${this.apiUrl}/tok/obnova/init`, {"studentId": studentId, "napomena": napomena})
   }
 
 }

@@ -1,5 +1,5 @@
 <br>
-<div *ngIf="studentProfile.upisiGodine != undefined" class="container">
+<div *ngIf="studentProfile.upisiGodine != undefined && noviUpis != undefined" class="container">
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-9">
@@ -9,23 +9,32 @@
             </h6>
         </div>
         <div class="col-md-2">
-            <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#upisModal">Upiši godinu</button> -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#upisModal">Upiši godinu</button>
-            <div class="modal fade" id="upisModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <button type="button" class="btn btn-primary" (click)="openModal()">Novi upis</button>
+            <div class="modal fade" id="upisModal" tabindex="-1" aria-labelledby="upisModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Novi upis godine</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <h5 class="modal-title" id="upisModalLabel">Novi upis</h5>
+                      <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
+                            <!-- <label class="form-label">Datum upisa: {{noviUpis.datumUpisa}}</label><br> -->
+                            <label class="form-label">Prenos ESPB: {{noviUpis.prenosEspb}}</label><br>
+                            <label class="form-label">Godina koja se upisuje: {{noviUpis.godinaKojaSeUpisuje}}</label><br>
+                            <label class="form-label">Školska godina: {{noviUpis.skolskaGodina.pocetna}}/{{noviUpis.skolskaGodina.krajnja}}</label><br>
+                            <label class="form-label">Predmeti:</label><br>
+                            <ul *ngFor="let predmet of noviUpis.predmeti; let i = index">
+                                <li>{{predmet.naziv}}</li>
+                            </ul>
+                        </div>
+                        <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Napomena</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="napomena"></textarea>
-                          </div>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="noviUpis.napomena"></textarea>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
+                      <button type="button" class="btn btn-secondary" (click)="closeModal()">Zatvori</button>
                       <button type="button" class="btn btn-primary" (click)="dodajNoviUpis()">Sačuvaj</button>
                     </div>
                   </div>
@@ -45,6 +54,7 @@
                     <th scope="col">Godina koja se upisuje</th>
                     <th scope="col">Prenos ESPB</th>
                     <th scope="col">Školska godina</th>
+                    <th scope="col">Napomena</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -54,6 +64,7 @@
                     <td>{{upisGodine.godinaKojaSeUpisuje}}</td>
                     <td>{{upisGodine.prenosEspb}}</td>
                     <td>{{upisGodine.skolskaGodina.pocetna}}/{{upisGodine.skolskaGodina.krajnja}}</td>
+                    <td>{{upisGodine.napomena}}</td>
                 </tr>
                 </tbody>
             </table>

@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as bootstrap from 'bootstrap';
-import { StudentProfile } from 'src/app/model';
+import { ObnovaGodine, StudentProfile } from 'src/app/model';
 import { StudentService } from 'src/app/services/student.service';
 
 @Component({
@@ -8,29 +8,59 @@ import { StudentService } from 'src/app/services/student.service';
   templateUrl: './obnove-godine.component.html',
   styleUrls: ['./obnove-godine.component.css']
 })
-export class ObnoveGodineComponent {
+export class ObnoveGodineComponent implements OnInit{
   @Input()
   studentProfile!: StudentProfile;
 
-    studentService: StudentService;
+  studentService: StudentService;
+
+  novaObnova!: ObnovaGodine;
   
-    napomena!: string
+  constructor(studentService : StudentService) {
+    this.studentService = studentService
+  }
+
+  ngOnInit() {
+    console.log(this.studentProfile.indeks)
+    this.studentService.initNewObnova(this.studentProfile.indeks.student.id, '').subscribe(
+      newObnova => {
+        this.novaObnova = newObnova
+        console.log(this.novaObnova)
+      }
+    )
+  }
+
+    openModal() { 
+      this.ngOnInit()
+      const modalElement = document.getElementById('obnovaModal');
+      if (modalElement) {
+        const modal = new bootstrap.Modal(modalElement);
+        modal.show();
+      }
+    }
   
-    constructor(studentService : StudentService) {
-      this.studentService = studentService
+    closeModal() {
+      const modalElement = document.getElementById('obnovaModal');
+      if (modalElement) {
+        const modal = bootstrap.Modal.getInstance(modalElement);
+        modal?.hide();
+      }
     }
 
 
   dodajNovuObnovu(){
-      this.studentService.addNewObnova(this.studentProfile.indeks.student.id, this.napomena).subscribe(
+      this.studentService.addNewObnova(this.novaObnova).subscribe(
         obnovaId => {
           console.log('Obnova godine: ' + obnovaId)
           this.studentService.getStudentProfile(this.studentProfile.indeks.id).subscribe(
             response => {
                 this.studentProfile.obnoveGodine = response.obnoveGodine
-                this.napomena = ''
-                bootstrap.Modal.getInstance(document.getElementById('obnovaModal')!)?.hide();
-                document.querySelector('.modal-backdrop')?.remove();
+                this.closeModal()
+                this.studentService.initNewObnova(this.studentProfile.indeks.student.id, '').subscribe(
+                  newObnova => {
+                    this.novaObnova = newObnova
+                  }
+                )
             }
           )
         },

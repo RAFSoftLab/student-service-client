@@ -9,27 +9,39 @@
             </h6>
         </div>
         <div class="col-md-2">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#obnovaModal">Obnovi godinu</button>
+            <button type="button" class="btn btn-primary" (click)="openModal()">Nova obnova</button>
             <div class="modal fade" id="obnovaModal" tabindex="-1" aria-labelledby="obnovaModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="obnovaModalLabel">Nova obnova godine</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <h5 class="modal-title" id="obnovaModalLabel">Nova obnova</h5>
+                      <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" *ngIf="novaObnova != null">
+                        <div class="mb-3">
+                            <!-- <label class="form-label">Datum obnove: {{novaObnova.datumObnove}}</label><br> -->
+                            <label class="form-label">Godina koja se obnavlja: {{novaObnova.godinaKojuObnavlja}}</label><br>
+                            <label class="form-label">Školska godina: {{novaObnova.skolskaGodina.pocetna}}/{{novaObnova.skolskaGodina.krajnja}}</label><br>
+                            <label class="form-label">Predmeti:</label><br>
+                            <div *ngFor="let predmet of novaObnova.upisujePredmete; let i = index">
+                                <input class="form-check-input" type="checkbox" [value]="predmet.id" [id]="predmet.id">
+                                <label class="form-check-label" [for]="predmet.id">
+                                    {{predmet.naziv}}
+                                </label>
+                            </div>
+                        </div>
                         <div class="mb-3">
                             <label for="obnovaFormControlTextarea1" class="form-label">Napomena</label>
-                            <textarea class="form-control" id="obnovaFormControlTextarea1" rows="3"></textarea>
-                          </div>
+                            <textarea class="form-control" id="obnovaFormControlTextarea1" rows="3" [(ngModel)]="novaObnova.napomena"></textarea>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
+                      <button type="button" class="btn btn-secondary" (click)="closeModal()">Zatvori</button>
                       <button type="button" class="btn btn-primary" (click)="dodajNovuObnovu()">Sačuvaj</button>
                     </div>
                   </div>
                 </div>
-              </div>
+            </div>
         </div>
     </div>
     <br>
@@ -43,6 +55,7 @@
                     <th scope="col">Datum obnove</th>
                     <th scope="col">Godina koju obnavlja</th>
                     <th scope="col">Školska godina</th>
+                    <th scope="col">Napomena</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,6 +64,7 @@
                     <td>{{obnovaGodine.datumObnove}}</td>
                     <td>{{obnovaGodine.godinaKojuObnavlja}}</td>
                     <td>{{obnovaGodine.skolskaGodina.pocetna}}/{{obnovaGodine.skolskaGodina.krajnja}}</td>
+                    <td>{{obnovaGodine.napomena}}</td>
                 </tr>
                 </tbody>
             </table>

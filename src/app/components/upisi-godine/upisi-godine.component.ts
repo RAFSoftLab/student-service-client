@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as bootstrap from 'bootstrap';
-import { StudentProfile } from 'src/app/model';
+import { StudentProfile, UpisGodine } from 'src/app/model';
 import { StudentService } from 'src/app/services/student.service';
 
 @Component({
@@ -8,29 +8,58 @@ import { StudentService } from 'src/app/services/student.service';
   templateUrl: './upisi-godine.component.html',
   styleUrls: ['./upisi-godine.component.css']
 })
-export class UpisiGodineComponent {
+export class UpisiGodineComponent implements OnInit{
 
   @Input()
   studentProfile!: StudentProfile;
 
   studentService: StudentService;
 
-  napomena!: string
+  noviUpis!: UpisGodine;
 
   constructor(studentService : StudentService) {
     this.studentService = studentService
   }
+  ngOnInit(){
+    console.log(this.studentProfile.indeks)
+    this.studentService.initNewUpis(this.studentProfile.indeks.student.id, '').subscribe(
+      newUpis => {
+        this.noviUpis = newUpis
+        console.log(this.noviUpis)
+      }
+    )
+  }
+
+  openModal() {
+    const modalElement = document.getElementById('upisModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    }
+  }
+
+  closeModal() {
+    const modalElement = document.getElementById('upisModal');
+    if (modalElement) {
+      const modal = bootstrap.Modal.getInstance(modalElement);
+      modal?.hide();
+    }
+  }
 
   dodajNoviUpis(){
-    this.studentService.addNewUpis(this.studentProfile.indeks.student.id, this.napomena).subscribe(
+    
+    this.studentService.addNewUpis(this.noviUpis).subscribe(
       upisId => {
         console.log('Upis godine: ' + upisId)
         this.studentService.getStudentProfile(this.studentProfile.indeks.id).subscribe(
           response => {
               this.studentProfile.upisiGodine = response.upisiGodine
-              this.napomena = ''
-              bootstrap.Modal.getInstance(document.getElementById('upisModal')!)?.hide();
-              document.querySelector('.modal-backdrop')?.remove();
+              this.closeModal()
+              this.studentService.initNewUpis(this.studentProfile.indeks.student.id, '').subscribe(
+                newUpis => {
+                  this.noviUpis = newUpis
+                }
+              )
           }
         )
       },

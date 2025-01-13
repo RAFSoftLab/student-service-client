@@ -1,8 +1,8 @@
 export interface StudentProfile {
   indeks: Indeks
   polozeniPredmeti: PolozeniPredmeti[]
-  upisiGodine: UpisiGodine[]
-  obnoveGodine: ObnoveGodine[]
+  upisiGodine: UpisGodine[]
+  obnoveGodine: ObnovaGodine[]
   uplate: Uplata[]
   prijaveIspita: PrijaveIspita[]
   slusaPredmete: SlusaPredmet[]
@@ -121,7 +121,7 @@ export interface Predmet {
   izbornaGrupa?: string
 }
 
-export interface UpisiGodine {
+export interface UpisGodine {
   id: number
   studentIndeks: StudentIndeks
   datumUpisa: string
@@ -132,7 +132,7 @@ export interface UpisiGodine {
   napomena: any
 }
 
-export interface ObnoveGodine {
+export interface ObnovaGodine {
   id: number
   studentIndeks: StudentIndeks
   godinaKojuObnavlja: number
