@@ -60,3 +60,68 @@
   - Spisak prijavljenih studenata po predmetu i roku.
   - Prosečna ocena po ispitima i predmetima.
   - Sortirani rezultati studenata po programu, godini upisa i broju indeksa.
+ 
+## Preduslovi za instalaciju
+Pre nego što počnete sa instalacijom, uverite se da imate sledeće:
+1.	Node.js i npm (Node Package Manager):
+-	Preuzmite i instalirajte Node.js.
+-	Proverite verzije komandom:
+    ```bash
+    node -v
+    npm -v
+    ```
+2.	Angular CLI:
+-	Instalirajte Angular CLI globalno:
+    ```bash
+    npm install -g @angular/cli
+    ```
+-	Proverite instalaciju:
+    ```bash
+    ng version
+    ```
+
+## Instalacija projekta
+1. Kloniranje repozitorijuma
+  Klonirajte repozitorijum projekta sa GitHub upotrebom komande:
+    ```bash
+    git clone https://github.com/RAFSoftLab/student-service-client.git
+    cd student-service-client
+    ```
+
+
+2. Instalacija node_modules
+  Pokrenite komandu za instalaciju node_modules  - svih potrebnih zavisnosti navedenih u fajlu package.json.
+    ```bash
+    npm install
+    ```
+
+3. Konfiguracija okruženja (opciono)
+-	Otvorite fajl za konfiguraciju okruženja (src/environments/environment.ts).
+-	Ako je potrebno, dodajte URL ka Vašem backend serveru.
+
+4. Pokretanje aplikacije u razvojnom okruženju
+  Pokrenite razvojni server koristeći Angular CLI, pozivanjem komange:
+    ```bash
+    ng serve
+    ```
+  -	Aplikacija će biti dostupna na: http://localhost:4200/.
+
+5. Kreiranje produkcijskog build-a (opciono)
+  Za generisanje build-a za produkciju koristite:
+    ```bash
+    ng build –prod
+    ```
+-	Build će biti dostupan u folderu dist/student-service-client.
+
+## Dodatne informacije
+Debugging
+-	Ako se pojave greške tokom instalacije zavisnosti, pokušajte da obrišete folder node_modules i ponovo instalirate zavisnosti:
+    ```bash
+    rm -rf node_modules package-lock.json
+    npm install
+    ```
+
+Korisni alati
+-	Postman za testiranje API-ja koji koristi aplikacija.
+-	Angular DevTools za debagovanje Angular aplikacija u pretraživaču.
+
