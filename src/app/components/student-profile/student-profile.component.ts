@@ -1,6 +1,6 @@
-import { DatePipe, getLocaleDateFormat } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { IndeksRequest, StudentProfile, StudijskiProgram } from 'src/app/model';
+import { StudentProfile, StudijskiProgram } from 'src/app/model';
 import { StudentService } from 'src/app/services/student.service';
 
 @Component({
@@ -115,16 +115,10 @@ export class StudentProfileComponent implements OnInit{
     return 'data:image/jpeg;base64,' + window.btoa(binary); // Change image type if necessary
   }
 
-  // onUpload(): void {
-    
-  // }
-
   getImage(){
     if (this.studentProfile.indeks.id == undefined) return "https://cdn-icons-png.flaticon.com/512/12058/12058199.png"
     if (this.studentProfile.indeks.student.slika != '') return this.studentProfile.indeks.student.slika
     if (this.imagePreview != null) return this.imagePreview
     return "https://cdn-icons-png.flaticon.com/512/12058/12058199.png"
   }
-
-
 }

@@ -187,17 +187,9 @@ export interface SlusaPredmet {
 
 export interface DrziPredmet {
   id: number
-  skolskaGodina: SkolskaGodina2
+  skolskaGodina: SkolskaGodina
   nastavnik: Nastavnik
   predmet: Predmet
-}
-
-export interface SkolskaGodina2 {
-  id: number
-  pocetna: number
-  krajnja: number
-  aktivna: boolean
-  datumPocetka: any
 }
 
 export interface IspitniRok {
