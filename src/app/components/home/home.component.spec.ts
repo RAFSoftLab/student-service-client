@@ -3,8 +3,8 @@ import { HomeComponent } from './home.component';
 import { StudentService } from 'src/app/services/student.service';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { FormsModule } from '@angular/forms';  // Dodajte FormsModule za ngModel
-import { RouterTestingModule } from '@angular/router/testing';  // Dodajte RouterTestingModule
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -33,8 +33,8 @@ describe('HomeComponent', () => {
       declarations: [HomeComponent],
       imports: [
         HttpClientTestingModule,
-        FormsModule,  // Obavezno dodajte FormsModule
-        RouterTestingModule // Dodajte RouterTestingModule
+        FormsModule, 
+        RouterTestingModule
       ],
       providers: [
         { provide: StudentService, useValue: studentServiceMock },

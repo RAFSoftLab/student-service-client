@@ -61,7 +61,7 @@ describe('StudentProfileComponent', () => {
         studProgramOznaka: '',
         nacinFinansiranja: '',
       },
-    } as any; // Cast for test simplicity
+    } as any;
     fixture.detectChanges();
   });
 

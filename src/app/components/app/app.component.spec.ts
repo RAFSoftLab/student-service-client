@@ -2,10 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { StudentService } from 'src/app/services/student.service';
 import { of, throwError } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { FormsModule } from '@angular/forms';  // Dodajte FormsModule za ngModel
-import { RouterTestingModule } from '@angular/router/testing';  // Dodajte RouterTestingModule
+import { FormsModule } from '@angular/forms'; 
+import { RouterTestingModule } from '@angular/router/testing'; 
 import { AppComponent } from './app.component';
-import { Router } from '@angular/router';
 
 
 describe('AppComponent', () => {
@@ -20,15 +19,15 @@ describe('AppComponent', () => {
     };
 
     routerMock = jasmine.createSpyObj('Router', ['navigate'], {
-        root: {}, // Dodajte mock za root
+        root: {}, // mock za root
       });
 
     await TestBed.configureTestingModule({
           declarations: [AppComponent],
           imports: [
             HttpClientTestingModule,
-            FormsModule,  // Obavezno dodajte FormsModule
-            RouterTestingModule // Dodajte RouterTestingModule
+            FormsModule, 
+            RouterTestingModule
           ],
           providers: [
             { provide: StudentService, useValue: studentServiceMock }

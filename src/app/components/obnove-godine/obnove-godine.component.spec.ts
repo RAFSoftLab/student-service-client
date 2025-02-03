@@ -6,6 +6,7 @@ import { ObnovaGodine, SkolskaGodina, Student, StudentIndeks, StudentProfile } f
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
 
 describe('ObnoveGodineComponent', () => {
   let component: ObnoveGodineComponent;
@@ -14,15 +15,37 @@ describe('ObnoveGodineComponent', () => {
 
   beforeEach(async () => {
     const studentProfile : StudentProfile = {
-        indeks: { id: 1, student: { id: 123 } as unknown as Student, indeks: '2020/001' } as unknown as StudentIndeks,
-        obnoveGodine: []
+        indeks: { 
+          id: 1, 
+          student: { 
+            id: 123,
+            ime: 'Marko', 
+            prezime: 'Markovic'
+          } as unknown as Student, 
+          studProgramOznaka: 'IT', 
+          broj: '123', 
+          godina: '2023', 
+          indeks: '2020/001'
+        } as unknown as StudentIndeks,
+        obnoveGodine: [
+          {
+            datumObnove: '2023-01-01',
+            godinaKojuObnavlja: 1,
+            skolskaGodina: { pocetna: 2022, krajnja: 2023 },
+            napomena: 'Test napomena',
+          },
+        ]
     } as unknown as StudentProfile
 
     const obnoveGodine : ObnovaGodine = {
         id: 1,
         skolskaGodina:{
             pocetna: 2024
-        } as unknown as SkolskaGodina
+        } as unknown as SkolskaGodina,
+        upisujePredmete: [
+          { id: 1, naziv: 'Matematika' },
+          { id: 2, naziv: 'Fizika' },
+        ]
     } as unknown as ObnovaGodine
 
     studentServiceMock = {
@@ -35,8 +58,8 @@ describe('ObnoveGodineComponent', () => {
       declarations: [ObnoveGodineComponent],
       imports: [
               HttpClientTestingModule,
-              FormsModule,  // Obavezno dodajte FormsModule
-              RouterTestingModule // Dodajte RouterTestingModule
+              FormsModule,
+              RouterTestingModule
             ],
       providers: [
         { provide: StudentService, useValue: studentServiceMock }
@@ -73,7 +96,11 @@ describe('ObnoveGodineComponent', () => {
         id: 1,
         skolskaGodina:{
             pocetna: 2024
-        } as unknown as SkolskaGodina
+        } as unknown as SkolskaGodina,
+        upisujePredmete: [
+          { id: 1, naziv: 'Matematika' },
+          { id: 2, naziv: 'Fizika' },
+        ]
     } as unknown as ObnovaGodine
 
     const updatedProfile = {
@@ -106,5 +133,49 @@ describe('ObnoveGodineComponent', () => {
 
     expect(studentServiceMock.addNewObnova).toHaveBeenCalledWith(mockObnova);
     expect(window.alert).toHaveBeenCalledWith('Greška prilikom dodavanja nove obnove godine!');
+  });
+
+  //html ------------------------------------------------------------
+
+  it('should display student profile header correctly', () => {
+    const header = fixture.debugElement.query(By.css('h6')).nativeElement;
+    expect(header.textContent).toContain('Marko Markovic');
+    expect(header.textContent).toContain('IT123/2023');
+  });
+
+  it('should render the obnova table correctly', () => {
+    const rows = fixture.debugElement.queryAll(By.css('table tbody tr'));
+    expect(rows.length).toBe(1);
+    expect(rows[0].nativeElement.textContent).toContain('2023-01-01');
+    expect(rows[0].nativeElement.textContent).toContain('1');
+    expect(rows[0].nativeElement.textContent).toContain('2022/2023');
+    expect(rows[0].nativeElement.textContent).toContain('Test napomena');
+  });
+
+  it('should display the list of subjects in the modal correctly', () => {
+    component.openModal();
+    fixture.detectChanges();
+
+    const subjectLabels = fixture.debugElement.queryAll(By.css('.form-check-label'));
+    expect(subjectLabels.length).toBe(2);
+    expect(subjectLabels[0].nativeElement.textContent).toContain('Matematika');
+    expect(subjectLabels[1].nativeElement.textContent).toContain('Fizika');
+  });
+
+  it('should bind textarea value correctly for napomena', () => {
+    const textarea = fixture.debugElement.query(By.css('#obnovaFormControlTextarea1')).nativeElement;
+    textarea.value = 'New Note';
+    textarea.dispatchEvent(new Event('input'));
+
+    expect(component.novaObnova.napomena).toBe('New Note');
+  });
+
+  it('should call dodajNovuObnovu() when save button is clicked', () => {
+    spyOn(component, 'dodajNovuObnovu');
+
+    const saveButton = fixture.debugElement.query(By.css('.modal-footer .btn-primary')).nativeElement;
+    saveButton.click();
+
+    expect(component.dodajNovuObnovu).toHaveBeenCalled();
   });
 });
