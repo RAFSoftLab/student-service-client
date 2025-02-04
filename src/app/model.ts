@@ -129,7 +129,7 @@ export interface UpisGodine {
   godinaKojaSeUpisuje: number
   predmeti: Predmet[]
   skolskaGodina: SkolskaGodina
-  napomena: any
+  napomena: string
 }
 
 export interface ObnovaGodine {
@@ -138,7 +138,7 @@ export interface ObnovaGodine {
   godinaKojuObnavlja: number
   upisujePredmete: Predmet[]
   datumObnove: string
-  napomena: any
+  napomena: string
   skolskaGodina: SkolskaGodina
 }
 

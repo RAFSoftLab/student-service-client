@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as bootstrap from 'bootstrap';
-import { ObnovaGodine, StudentProfile } from 'src/app/model';
+import { ObnovaGodine, Predmet, StudentProfile } from 'src/app/model';
 import { StudentService } from 'src/app/services/student.service';
 
 @Component({
@@ -15,6 +15,8 @@ export class ObnoveGodineComponent implements OnInit{
   studentService: StudentService;
 
   novaObnova!: ObnovaGodine;
+
+  upisujePredmete!: Predmet[]
   
   constructor(studentService : StudentService) {
     this.studentService = studentService
@@ -25,48 +27,61 @@ export class ObnoveGodineComponent implements OnInit{
     this.studentService.initNewObnova(this.studentProfile.indeks.student.id, '').subscribe(
       newObnova => {
         this.novaObnova = newObnova
+        this.upisujePredmete = newObnova.upisujePredmete
+        this.novaObnova.upisujePredmete = []
         console.log(this.novaObnova)
       }
     )
   }
 
-    openModal() { 
-      this.ngOnInit()
-      const modalElement = document.getElementById('obnovaModal');
-      if (modalElement) {
-        const modal = new bootstrap.Modal(modalElement);
-        modal.show();
-      }
+  openModal() { 
+    this.ngOnInit()
+    const modalElement = document.getElementById('obnovaModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
     }
-  
-    closeModal() {
-      const modalElement = document.getElementById('obnovaModal');
-      if (modalElement) {
-        const modal = bootstrap.Modal.getInstance(modalElement);
-        modal?.hide();
-      }
+  }
+
+  closeModal() {
+    const modalElement = document.getElementById('obnovaModal');
+    if (modalElement) {
+      const modal = bootstrap.Modal.getInstance(modalElement);
+      modal?.hide();
     }
+  }
+
+  onCheckboxChange(event: any) {
+    if (event.target.checked) {
+      this.novaObnova.upisujePredmete.push({ id: Number(event.target.value)} as Predmet);
+    } else {
+      const index = this.novaObnova.upisujePredmete.findIndex(x => x.id === event.target.value);
+      this.novaObnova.upisujePredmete.splice(index, 1);
+    }
+    console.log(this.novaObnova.upisujePredmete)
+  }
 
 
   dodajNovuObnovu(){
-      this.studentService.addNewObnova(this.novaObnova).subscribe(
-        obnovaId => {
-          console.log('Obnova godine: ' + obnovaId)
-          this.studentService.getStudentProfile(this.studentProfile.indeks.id).subscribe(
-            response => {
-                this.studentProfile.obnoveGodine = response.obnoveGodine
-                this.closeModal()
-                this.studentService.initNewObnova(this.studentProfile.indeks.student.id, '').subscribe(
-                  newObnova => {
-                    this.novaObnova = newObnova
-                  }
-                )
-            }
-          )
-        },
-        error => {
-          alert('Greška prilikom dodavanja nove obnove godine!')
-        }
-      )
-    }
+    console.log(this.novaObnova)
+    this.studentService.addNewObnova(this.novaObnova).subscribe(
+      obnovaId => {
+        console.log('Obnova godine: ' + obnovaId)
+        this.studentService.getStudentProfile(this.studentProfile.indeks.id).subscribe(
+          response => {
+              this.studentProfile.obnoveGodine = response.obnoveGodine
+              this.closeModal()
+              this.studentService.initNewObnova(this.studentProfile.indeks.student.id, '').subscribe(
+                newObnova => {
+                  this.novaObnova = newObnova
+                }
+              )
+          }
+        )
+      },
+      error => {
+        alert('Greška prilikom dodavanja nove obnove godine!')
+      }
+    )
+  }
 }
