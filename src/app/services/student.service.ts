@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {IndeksRequest, ObnovaGodine, Student, StudentIndeks, StudentPageable, StudentProfile, StudijskiProgram, UpisGodine} from "../model";
+import {IndeksRequest, IspitniRok, ObnovaGodine, Student, StudentIndeks, StudentPageable, StudentProfile, StudijskiProgram, UpisGodine} from "../model";
 
 @Injectable({
   providedIn: 'root'
@@ -69,6 +69,14 @@ export class StudentService {
 
   initNewObnova(studentId: number, napomena: string): Observable<ObnovaGodine> {
     return this.httpClient.post<ObnovaGodine>(`${this.apiUrl}/tok/obnova/init`, {"studentId": studentId, "napomena": napomena})
+  }
+
+  getIspitniRokovi(): Observable<IspitniRok[]> {
+    return this.httpClient.get<IspitniRok[]>(`${this.apiUrl}/ispitni-rok/all`)
+  }
+  
+  addNewIspitniRok(ispitniRok: IspitniRok): Observable<number> {
+    return this.httpClient.post<number>(`${this.apiUrl}/ispitni-rok/add`, ispitniRok)
   }
 
 }

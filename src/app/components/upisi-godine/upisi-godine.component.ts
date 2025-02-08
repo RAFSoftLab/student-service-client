@@ -21,7 +21,7 @@ export class UpisiGodineComponent implements OnInit{
     this.studentService = studentService
   }
   ngOnInit(){
-    console.log(this.studentProfile.indeks)
+    if (this.studentProfile.indeks.id == undefined) return
     this.studentService.initNewUpis(this.studentProfile.indeks.student.id, '').subscribe(
       newUpis => {
         this.noviUpis = newUpis

@@ -24,6 +24,15 @@
             <li><a class="dropdown-item" href="#">Dodaj novog profesora</a></li>
           </ul>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Ispiti
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Ispiti</a></li>
+            <li><a class="dropdown-item" [routerLink]="'ispitni-rok'">Ispitni rokovi</a></li>
+          </ul>
+        </li>
       </ul>
       <form (submit)="pretraziPoIndeksu()" class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Indeks" aria-label="Search" name="indeks" (mousedown)="backToAppComponent()" [(ngModel)]="indeks">

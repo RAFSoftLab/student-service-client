@@ -23,7 +23,7 @@ export class ObnoveGodineComponent implements OnInit{
   }
 
   ngOnInit() {
-    console.log(this.studentProfile.indeks)
+    if (this.studentProfile.indeks.id == undefined) return
     this.studentService.initNewObnova(this.studentProfile.indeks.student.id, '').subscribe(
       newObnova => {
         this.novaObnova = newObnova

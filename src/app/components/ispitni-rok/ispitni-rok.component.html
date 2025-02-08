@@ -1,0 +1,45 @@
+<div *ngIf="ispitniRokovi != undefined" class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <h5 class="text-black-50">
+                Ispitni rokovi
+            </h5>
+            <br>
+            <div class="row mt-1">
+                <div class="col-md-3"><label class="labels">Naziv</label><input [(ngModel)]="noviIspitniRok.naziv" type="text" class="form-control" placeholder="naziv" value=""></div>
+                <div class="col-md-2"><label class="labels">Početak roka</label><input [(ngModel)]="noviIspitniRok.datumPocetka" type="date" class="form-control" placeholder="početak roka" value=""></div>
+                <div class="col-md-2"><label class="labels">Kraj roka</label><input [(ngModel)]="noviIspitniRok.datumZavrsetka" type="date" class="form-control" placeholder="kraj roka" value=""></div>
+                <div class="col-md-2"><label class="labels">Početak prijave</label><input [(ngModel)]="noviIspitniRok.datumPocetkaPrijave" type="date" class="form-control" placeholder="početak prijave" value=""></div>    
+                <div class="col-md-2"><label class="labels">Kraj prijave</label><input [(ngModel)]="noviIspitniRok.datumZavrsetkaPrijave" type="date" class="form-control" placeholder="kraj prijave" value=""></div>    
+                <div class="col-md-1"><label class="labels"></label><button class="btn btn-outline-primary" type="button" (click)="dodajIspitniRok()">Dodaj</button></div>
+            </div>
+            <br>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Naziv roka</th>
+                    <th scope="col">Datum početka roka</th>
+                    <th scope="col">Datum završetka roka</th>
+                    <th scope="col">Datum početka prijave</th>
+                    <th scope="col">Datum završetka prijave</th>
+                    <th scope="col">Školska godina</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let ispitniRok of ispitniRokovi; let i = index">
+                    <th scope="row">{{ i+1 }}</th>
+                    <td>{{ispitniRok.naziv}}</td>
+                    <td>{{ispitniRok.datumPocetka}}</td>
+                    <td>{{ispitniRok.datumZavrsetka}}</td>
+                    <td>{{ispitniRok.datumPocetkaPrijave}}</td>
+                    <td>{{ispitniRok.datumZavrsetkaPrijave}}</td>
+                    <td>{{ispitniRok.skolskaGodina.pocetna}}/{{ispitniRok.skolskaGodina.krajnja}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

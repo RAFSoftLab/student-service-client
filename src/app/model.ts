@@ -195,10 +195,10 @@ export interface DrziPredmet {
 export interface IspitniRok {
   id: number
   naziv: string
-  datumPocetka: any
-  datumZavrsetka: any
-  datumPocetkaPrijave: any
-  datumZavrsetkaPrijave: any
+  datumPocetka: Date
+  datumZavrsetka: Date
+  datumPocetkaPrijave: Date
+  datumZavrsetkaPrijave: Date
   skolskaGodina: SkolskaGodina
 }
 

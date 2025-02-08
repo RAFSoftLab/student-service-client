@@ -1,0 +1,8 @@
+.form-control:focus {
+    box-shadow: none;
+    border-color: #4c8be8
+}
+
+.labels {
+    font-size: 11px
+}
