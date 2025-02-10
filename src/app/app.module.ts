@@ -18,6 +18,7 @@ import { ObnoveGodineComponent } from './components/obnove-godine/obnove-godine.
 import { UplateComponent } from './components/uplate/uplate.component';
 import { DatePipe } from '@angular/common';
 import { IspitniRokComponent } from './components/ispitni-rok/ispitni-rok.component';
+import { IspitiComponent } from './components/ispiti/ispiti.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { IspitniRokComponent } from './components/ispitni-rok/ispitni-rok.compon
     UpisiGodineComponent,
     ObnoveGodineComponent,
     UplateComponent,
-    IspitniRokComponent
+    IspitniRokComponent,
+    IspitiComponent
   ],
   imports: [
     BrowserModule,

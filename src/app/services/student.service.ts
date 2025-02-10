@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {IndeksRequest, IspitniRok, ObnovaGodine, Student, StudentIndeks, StudentPageable, StudentProfile, StudijskiProgram, UpisGodine} from "../model";
+import {DrziPredmet, IndeksRequest, Ispit, IspitniRok, ObnovaGodine, SkolskaGodina, Student, StudentIndeks, StudentPageable, StudentProfile, StudijskiProgram, UpisGodine} from "../model";
 
 @Injectable({
   providedIn: 'root'
@@ -74,9 +74,28 @@ export class StudentService {
   getIspitniRokovi(): Observable<IspitniRok[]> {
     return this.httpClient.get<IspitniRok[]>(`${this.apiUrl}/ispitni-rok/all`)
   }
-  
+
   addNewIspitniRok(ispitniRok: IspitniRok): Observable<number> {
     return this.httpClient.post<number>(`${this.apiUrl}/ispitni-rok/add`, ispitniRok)
+  }
+  getIspiti(): Observable<Ispit[]> {
+    return this.httpClient.get<Ispit[]>(`${this.apiUrl}/ispiti/all`)
+  }
+  
+  addNewIspit(ispit: Ispit): Observable<number> {
+    return this.httpClient.post<number>(`${this.apiUrl}/ispiti/add`, ispit)
+  }
+
+  getAktivnaSkolskaGodina(): Observable<SkolskaGodina> {
+    return this.httpClient.get<SkolskaGodina>(`${this.apiUrl}/admin/skolskagodina/aktivna`)
+  }
+
+  getDrziPredmetAktivnaSkolskaGodina(): Observable<DrziPredmet[]> {
+    return this.httpClient.get<DrziPredmet[]>(`${this.apiUrl}/raspodelanastave/drzipredmet/aktivna/all`)
+  }
+
+  getIspitniRokAktivnaSkolskaGodina(): Observable<IspitniRok[]> {
+    return this.httpClient.get<IspitniRok[]>(`${this.apiUrl}/ispitni-rok/aktivna-godina/all`)
   }
 
 }

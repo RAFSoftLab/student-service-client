@@ -1,0 +1,55 @@
+<div *ngIf="ispiti != undefined" class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <h5 class="text-black-50">
+                Ispiti
+            </h5>
+            <br>
+            <div class="row mt-1">
+                <div class="col-md-6">
+                    <label class="labels">Ispitni rok</label>
+                    <select class="form-select" aria-label="Ispitni rok" [(ngModel)]="this.noviIspit.ispitniRok.id">
+                        <option *ngFor="let ispitniRok of this.ispitniRokovi; let i = index;" [value]="ispitniRok.id">{{ispitniRok.naziv}} {{ispitniRok.skolskaGodina.pocetna}}/{{ispitniRok.skolskaGodina.krajnja}}</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="labels">Predmet</label>
+                    <select class="form-select" aria-label="Predmet" [(ngModel)]="this.noviIspit.drziPredmet.id">
+                        <option *ngFor="let drziPredmet of this.drziPredmet; let i = index;" [value]="drziPredmet.id">{{drziPredmet.predmet.naziv}} - {{drziPredmet.nastavnik.ime}} {{drziPredmet.nastavnik.prezime}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-md-3"><label class="labels">Datum ispita</label><input [(ngModel)]="noviIspit.datumOdrzavanja" type="date" class="form-control" placeholder="datum i vreme održavanja" value=""></div>
+                <div class="col-md-3"><label class="labels">Vreme ispita</label><input [(ngModel)]="noviIspit.vremeOdrzavanja" type="time" class="form-control" placeholder="satnica održavanja" value=""></div>
+                <div class="col-md-5"><label class="labels">Učionica</label><input [(ngModel)]="noviIspit.mestoOdrzavanja" type="text" class="form-control" placeholder="učionica" value=""></div>
+                <div class="col-md-1"><label class="labels"></label><button class="btn btn-outline-primary" type="button" (click)="dodajIspit()">Dodaj</button></div>
+            </div>
+            <br>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Predmet</th>
+                    <th scope="col">Profesor</th>
+                    <th scope="col">Ispitni rok</th>
+                    <th scope="col">Termin</th>
+                    <th scope="col">Učionica</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let ispit of ispiti; let i = index">
+                    <th scope="row">{{ i+1 }}</th>
+                    <td>{{ispit.drziPredmet.predmet.naziv}}</td>
+                    <td>{{ispit.drziPredmet.nastavnik.ime}} {{ispit.drziPredmet.nastavnik.prezime}}</td>
+                    <td>{{ispit.ispitniRok.naziv}} {{ispit.ispitniRok.skolskaGodina.pocetna}}/{{ispit.ispitniRok.skolskaGodina.krajnja}}</td>
+                    <td>{{ispit.datumOdrzavanja}} {{ispit.vremeOdrzavanja}}</td>
+                    <td>{{ispit.mestoOdrzavanja}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

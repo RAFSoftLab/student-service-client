@@ -1,3 +1,5 @@
+import { Time } from "@angular/common"
+
 export interface StudentProfile {
   indeks: Indeks
   polozeniPredmeti: PolozeniPredmeti[]
@@ -171,13 +173,13 @@ export interface PrijaveIspita {
 
 export interface Ispit {
   id: number
-  datumOdrzavanja: string
-  vremeOdrzavanja: string
-  mestoOdrzavanja: any
+  datumOdrzavanja: Date
+  vremeOdrzavanja: Time
+  mestoOdrzavanja: string
   drziPredmet: DrziPredmet
   ispitniRok: IspitniRok
-  datumPredajeZapisnika: string
-  datumVerifikacije: string
+  datumPredajeZapisnika: Date
+  datumVerifikacije: Date
 }
 export interface SlusaPredmet {
   id: number

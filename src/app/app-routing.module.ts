@@ -6,6 +6,7 @@ import { StudentPolozeniPredmetiComponent } from './components/sudent-polozeni-p
 import { PrijaveIspitaComponent } from './components/prijave-ispita/prijave-ispita.component';
 import { NepolozeniPredmetiComponent } from './components/nepolozeni-predmeti/nepolozeni-predmeti.component';
 import { IspitniRokComponent } from './components/ispitni-rok/ispitni-rok.component';
+import { IspitiComponent } from './components/ispiti/ispiti.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: "ispitni-rok",
     component: IspitniRokComponent
+  },
+  {
+    path: "ispiti",
+    component: IspitiComponent
   }
 ];
 

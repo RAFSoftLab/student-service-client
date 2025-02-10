@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IspitniRok } from 'src/app/model';
+import { IspitniRok, SkolskaGodina } from 'src/app/model';
 import { StudentService } from 'src/app/services/student.service';
 
 @Component({
@@ -10,18 +10,25 @@ import { StudentService } from 'src/app/services/student.service';
 export class IspitniRokComponent implements OnInit{
   
   studentService: StudentService;
+  aktivnaSkolskaGodina!: SkolskaGodina;
   ispitniRokovi!: IspitniRok[];
-  noviIspitniRok!: IspitniRok
+  noviIspitniRok!: IspitniRok;
   
   
   constructor(studentService : StudentService) {
       this.studentService = studentService
-      this.noviIspitniRok = <IspitniRok>{skolskaGodina: {id: 15}}
+      this.noviIspitniRok = <IspitniRok>{ }
   }
   
   ngOnInit(){
     this.getIspitniRokovi()
+    this.studentService.getAktivnaSkolskaGodina().subscribe(
+      aktivnaSkolskaGodina => { 
+        this.noviIspitniRok.skolskaGodina = aktivnaSkolskaGodina  
+      }
+    )
   }
+  
   dodajIspitniRok(){
     this.studentService.addNewIspitniRok(this.noviIspitniRok).subscribe(
       response => { this.getIspitniRokovi() },
