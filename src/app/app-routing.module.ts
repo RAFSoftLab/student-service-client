@@ -7,11 +7,17 @@ import { PrijaveIspitaComponent } from './components/prijave-ispita/prijave-ispi
 import { NepolozeniPredmetiComponent } from './components/nepolozeni-predmeti/nepolozeni-predmeti.component';
 import { IspitniRokComponent } from './components/ispitni-rok/ispitni-rok.component';
 import { IspitiComponent } from './components/ispiti/ispiti.component';
+import { LoginComponent } from './components/login/login.component';
+import { AppComponent } from './components/app/app.component';
 
 const routes: Routes = [
   {
     path: "",
     component: HomeComponent
+  },
+  {
+    path: "login",
+    component: LoginComponent
   },
   {
     path: "student/:idStudentIndeks",
