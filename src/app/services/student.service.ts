@@ -56,19 +56,19 @@ export class StudentService {
   }
 
   addNewUpis(upisGodine: UpisGodine): Observable<number> {
-    return this.httpClient.post<number>(`${this.apiUrl}/tok/upis/add`, upisGodine)
+    return this.httpClient.post<number>(`${this.apiUrl}/admin/tok/upis/add`, upisGodine)
   }
 
   addNewObnova(obnovaGodine: ObnovaGodine): Observable<number> {
-    return this.httpClient.post<number>(`${this.apiUrl}/tok/obnova/add`, obnovaGodine)
+    return this.httpClient.post<number>(`${this.apiUrl}/admin/tok/obnova/add`, obnovaGodine)
   }
 
   initNewUpis(studentId: number, napomena: string): Observable<UpisGodine> {
-    return this.httpClient.post<UpisGodine>(`${this.apiUrl}/tok/upis/init`, {"studentId": studentId, "napomena": napomena})
+    return this.httpClient.post<UpisGodine>(`${this.apiUrl}/admin/tok/upis/init`, {"studentId": studentId, "napomena": napomena})
   }
 
   initNewObnova(studentId: number, napomena: string): Observable<ObnovaGodine> {
-    return this.httpClient.post<ObnovaGodine>(`${this.apiUrl}/tok/obnova/init`, {"studentId": studentId, "napomena": napomena})
+    return this.httpClient.post<ObnovaGodine>(`${this.apiUrl}/admin/tok/obnova/init`, {"studentId": studentId, "napomena": napomena})
   }
 
   getIspitniRokovi(): Observable<IspitniRok[]> {
@@ -91,7 +91,7 @@ export class StudentService {
   }
 
   getDrziPredmetAktivnaSkolskaGodina(): Observable<DrziPredmet[]> {
-    return this.httpClient.get<DrziPredmet[]>(`${this.apiUrl}/raspodelanastave/drzipredmet/aktivna/all`)
+    return this.httpClient.get<DrziPredmet[]>(`${this.apiUrl}/professor/raspodelanastave/drzipredmet/aktivna/all`)
   }
 
   getIspitniRokAktivnaSkolskaGodina(): Observable<IspitniRok[]> {

@@ -9,6 +9,7 @@ import { IspitniRokComponent } from './components/ispitni-rok/ispitni-rok.compon
 import { IspitiComponent } from './components/ispiti/ispiti.component';
 import { LoginComponent } from './components/login/login.component';
 import { AppComponent } from './components/app/app.component';
+import { authGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
   },
   {
     path: "student/:idStudentIndeks",
-    component: StudentComponent
+    component: StudentComponent,
+    canActivate: [authGuard]
   },
   {
     path: "polozeni-predmeti",
